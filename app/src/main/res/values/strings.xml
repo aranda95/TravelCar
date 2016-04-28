@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">TravelCarAssistant</string>
+    <string name="TituloCalculadora">Calculadora de combustible</string>
+    <string name="DescripcionCalculadora">Calcula cuanto te costará el viaje\n introduciendo los datos en \nnuestra calculadora\n(Escribe la coma como un punto).</string>
+    <string name="km">Kilómetros</string>
+    <string name="cons">L/100 Km</string>
+    <string name="ButtonCalc"> Calcula!</string>
+    <string name="Pre1">Consumo aproximado: </string>
+    <string name="Pre2">Gasto aproximado: </string>
+    <string name="Pre3">Precio por litro: </string>
+    <string name="TituloRutas">Rutas en coche recomendadas</string>
+    <string name="SJ">San Jose (Almeria)</string>
+    <string name="Baiona">Baiona (Pontevedra)</string>
+    <string name="Mallorca">Costa de Mallorca</string>
+    <string name="Consejos">Sabías que...</string>
+    <string name="BotonConsejos">Pulsa para más curiosidades!</string>
+    <string name="Recordatorio">No olvides...</string>
+    <string name="Rec2">Presión de las ruedas comprobada</string>
+    <string name="Rec3">Combustible suficiente para el viaje</string>
+    <string name="Rec4">Nivel de aceite correcto</string>
+    <string name="Rec1">Ruta a seguir planificada</string>
+    <string name="FrasePredet">...la velocidad máxima permitida es de 20Km/h más en un adelantamiento</string>
+    <string name="BarraPredet">0 de 4</string>
+    <string name="Dev">App by Dídac Plaza (ADFB)</string>
+    <string name="Intro">Bienvenido a TravelCar, una app que te ayudará a preparar las cosas básicas de tu viaje en coche y a asegurarte que tu y tu coche estáis listos.</string>
+</resources>

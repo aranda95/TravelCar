@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="combustibles">
+        <item>Gasolina</item>
+        <item>Diésel</item>
+    </string-array>
+</resources>
