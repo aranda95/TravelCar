@@ -2,7 +2,7 @@
 
 TravelCar app is an assitant, it will help you to plan your car trip, calculating the fuel expenses and remembering some tips which will help you in your travel.
 
-<img src="http://i64.tinypic.com/2dsn4eh.png" width="400">
+<img src="http://i64.tinypic.com/2dsn4eh.png" width="250">
 
 :warning: Report issues on the [Developer email](mailto:dplaza1996@gmail.com?subject=TravelCar)
 
