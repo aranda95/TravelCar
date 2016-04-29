@@ -1,0 +1,11 @@
+TravelCar, your future companion on every trip!
+
+TravelCar is an app oriented to these people who wants to set up their trip, and be sure they are ready.
+You will be able to know some tips and curious things. For example, check your oil level before a long trip, because I'm sure you do not want
+any fault related with your car in the middle of your trip!
+For those who have a limited budget, a fuel calculator will help them to know how much they will spend (approximately) in fuel.
+
+And finally, if you want to do a trip but you do not have anything planned, there are some wonderful routes to drive in!
+
+My idea was initially to design an app about cars because it's, probably, my passion just above computers (both are tech-related),
+ and I thought would be useful something like this!
