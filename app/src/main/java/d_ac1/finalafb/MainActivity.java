@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity{
 
     private Double fuelPrice; //Variable for fuel price
-    private String[] Tips = new String[11]; //Tips vector for DidYouKnow...? Button
+    private String[] tips = new String[11]; //Tips vector for DidYouKnow...? Button
     private int tipsIterator;
     public int progressBarStatus; //0(0%) - 4(100%)
 
@@ -81,27 +81,27 @@ public class MainActivity extends AppCompatActivity{
     }
 
     /**
-     *Fill the Tips vector with some strings to show
+     *Fill the tips vector with some strings to show
      */
     private void fillTipsVector() {
         tipsIterator = 0;
-        Tips[0] = "...la velocidad máxima permitida es de 20Km/h más en un adelantamiento";
-        Tips[1] = "...la gasolina está más barata los lunes, por que es el día que revisan " +
+        tips[0] = "...la velocidad máxima permitida es de 20Km/h más en un adelantamiento";
+        tips[1] = "...la gasolina está más barata los lunes, por que es el día que revisan " +
                 "los precios.";
-        Tips[2] = "...el diésel es más barato por que está menos depurado y contiene más impurezas.";
-        Tips[3] = "...en caso de accidente, los triángulos deben verse a mas de 100 metros.";
-        Tips[4] = "...el airbag es capaz de matarte si no llevas el cinturón, asi que póntelo!";
-        Tips[5] = "...llevar las ventanillas bajadas aumenta el consumo, debido a que " +
+        tips[2] = "...el diésel es más barato por que está menos depurado y contiene más impurezas.";
+        tips[3] = "...en caso de accidente, los triángulos deben verse a mas de 100 metros.";
+        tips[4] = "...el airbag es capaz de matarte si no llevas el cinturón, asi que póntelo!";
+        tips[5] = "...llevar las ventanillas bajadas aumenta el consumo, debido a que " +
                 "empeora la aerodinámica.";
-        Tips[6] = "...una presión baja en las ruedas, además de aumentar el consumo, " +
+        tips[6] = "...una presión baja en las ruedas, además de aumentar el consumo, " +
                 "acelera el desgaste de los neumáticos.";
-        Tips[7] = "...además, es ideal ajustar la presión según si haremos un viaje cargados o no.";
-        Tips[8] = "...si tu coche es turboalimentado, deberías dejarlo en marcha un rato cuando " +
+        tips[7] = "...además, es ideal ajustar la presión según si haremos un viaje cargados o no.";
+        tips[8] = "...si tu coche es turboalimentado, deberías dejarlo en marcha un rato cuando " +
                 "llegues a tu destino para enfriar lentamente el turbocompresor y evitar que se " +
                 "estropee, ya que en funcionamiento, alcanza picos de hasta 200.000 RPM.";
-        Tips[9] = "...los coches de colores raros o chillones, pagan menos seguro" +
+        tips[9] = "...los coches de colores raros o chillones, pagan menos seguro" +
                 "debido a que son más fáciles de encontrar si son robados.";
-        Tips[10] = "...un coche normal consume 6 veces más en primera marcha a 10Km/h" +
+        tips[10] = "...un coche normal consume 6 veces más en primera marcha a 10Km/h" +
                 " que en quinta marcha a 80Km/h.";
     }
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity{
      */
     private void createDidYouKnowButton(){
         TextView tipInit = (TextView) findViewById(R.id.RandTip);
-        tipInit.setText(Tips[0]);
+        tipInit.setText(tips[0]);
         Button tip = (Button) findViewById(R.id.NewTip);
         tip.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity{
                 TextView tip = (TextView) findViewById(R.id.RandTip);
                 if(tipsIterator == 10) tipsIterator = 0;
                 else ++tipsIterator;
-                tip.setText(Tips[tipsIterator]);
+                tip.setText(tips[tipsIterator]);
             }
         });
     }
