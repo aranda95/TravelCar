@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity{
 
     private Double fuelPrice; //Variable for fuel price
-    private String[] Tips = new String[20]; //Tips vector for DidYouKnow...? Button
+    private String[] Tips = new String[11]; //Tips vector for DidYouKnow...? Button
     private int tipsIterator;
     public int progressBarStatus; //0(0%) - 4(100%)
 
