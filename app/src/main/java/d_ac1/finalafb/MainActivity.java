@@ -14,86 +14,77 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity{
 
-    private Double PrecioComb; //Variable del precio del combustible
-    private String[] Tips = new String[20]; //Vector de frases para los consejos
-    private int iterador;
-    public int tips;
+    private Double fuelPrice; //Variable for fuel price
+    private String[] Tips = new String[20]; //Tips vector for DidYouKnow...? Button
+    private int tipsIterator;
+    public int progressBarStatus; //0(0%) - 4(100%)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CheckBoxListener();
-        SpinnerCreator();
-        BotonCalculadora();
-        RellenadorConsejos();
-        BotonConsejos();
+        createCheckBoxListener();
+        createAndFillSpinner();
+        createCalcFunctions();
+        fillTipsVector();
+        createDidYouKnowButton();
     }
 
     /**
-     *Listener para los checkbox
+     *Recalculation of the progressBar
      */
-    private void CheckBoxListener() {
-        tips = 0;
-        CheckBox Rec = (CheckBox) findViewById(R.id.Rec1);
-        Rec.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    private void setProgressBar(CompoundButton compoundButton){
+        if (compoundButton.isChecked()) ++progressBarStatus;
+        else --progressBarStatus;
+        TextView textLoadingBar = (TextView) findViewById(R.id.BarraCargarText);
+        textLoadingBar.setText(progressBarStatus + " de 4");
+        ProgressBar loading = (ProgressBar) findViewById(R.id.BarraCargar);
+        loading.setProgress(progressBarStatus);
+    }
+
+    /**
+     *Listener for checkboxes
+     */
+    private void createCheckBoxListener() {
+        progressBarStatus = 0;
+        CheckBox reminders = (CheckBox) findViewById(R.id.Rec1);
+        reminders.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (compoundButton.isChecked()) ++tips;
-                else --tips;
-                TextView TextLoadingBar = (TextView) findViewById(R.id.BarraCargarText);
-                TextLoadingBar.setText(tips + " de 4");
-                ProgressBar Loading = (ProgressBar) findViewById(R.id.BarraCargar);
-                Loading.setProgress(tips);
+                setProgressBar(compoundButton);
             }
         });
-        Rec = (CheckBox) findViewById(R.id.Rec2);
-        Rec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(((CheckBox) view).isChecked()) ++tips;
-                else --tips;
-                TextView TextLoadingBar = (TextView) findViewById(R.id.BarraCargarText);
-                TextLoadingBar.setText(tips + " de 4");
-                ProgressBar Loading = (ProgressBar) findViewById(R.id.BarraCargar);
-                Loading.setProgress(tips);
-            }
-        });
-        Rec = (CheckBox) findViewById(R.id.Rec3);
-        Rec.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        reminders = (CheckBox) findViewById(R.id.Rec2);
+        reminders.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (compoundButton.isChecked()) ++tips;
-                else --tips;
-                TextView TextLoadingBar = (TextView) findViewById(R.id.BarraCargarText);
-                TextLoadingBar.setText(tips + " de 4");
-                ProgressBar Loading = (ProgressBar) findViewById(R.id.BarraCargar);
-                Loading.setProgress(tips);
+                setProgressBar(compoundButton);
             }
         });
-        Rec = (CheckBox) findViewById(R.id.Rec4);
-        Rec.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        reminders = (CheckBox) findViewById(R.id.Rec3);
+        reminders.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (compoundButton.isChecked()) ++tips;
-                else --tips;
-                TextView TextLoadingBar = (TextView) findViewById(R.id.BarraCargarText);
-                TextLoadingBar.setText(tips + " de 4");
-                ProgressBar Loading = (ProgressBar) findViewById(R.id.BarraCargar);
-                Loading.setProgress(tips);
+                setProgressBar(compoundButton);
+            }
+        });
+        reminders = (CheckBox) findViewById(R.id.Rec4);
+        reminders.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                setProgressBar(compoundButton);
             }
         });
     }
 
     /**
-     *Rellena el vector de consejos
+     *Fill the Tips vector with some strings to show
      */
-    private void RellenadorConsejos() {
-        iterador = 0;
+    private void fillTipsVector() {
+        tipsIterator = 0;
         Tips[0] = "...la velocidad máxima permitida es de 20Km/h más en un adelantamiento";
         Tips[1] = "...la gasolina está más barata los lunes, por que es el día que revisan " +
                 "los precios.";
@@ -115,9 +106,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
     /**
-     *Crea el boton de los consejos
+     *Create the button which controls the function that shows random Tips
      */
-    private void BotonConsejos(){
+    private void createDidYouKnowButton(){
         TextView tipInit = (TextView) findViewById(R.id.RandTip);
         tipInit.setText(Tips[0]);
         Button tip = (Button) findViewById(R.id.NewTip);
@@ -125,17 +116,17 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 TextView tip = (TextView) findViewById(R.id.RandTip);
-                if(iterador == 10) iterador = 0;
-                else ++iterador;
-                tip.setText(Tips[iterador]);
+                if(tipsIterator == 10) tipsIterator = 0;
+                else ++tipsIterator;
+                tip.setText(Tips[tipsIterator]);
             }
         });
     }
 
     /**
-     *Crea y rellena el spinner de combustibles
+     *Create and fill the Spinner with fuel names and the listener which returns the fuel price
      */
-    private void SpinnerCreator(){
+    private void createAndFillSpinner(){
         //Spinner filler
         Spinner spinner = (Spinner) findViewById(R.id.SpinnerCombustibles);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -149,10 +140,10 @@ public class MainActivity extends AppCompatActivity{
                 String item = parent.getItemAtPosition(position).toString();
                 switch (item){
                     case "Gasolina":
-                        PrecioComb = 1.199;
+                        fuelPrice = 1.199;
                         break;
                     case "Diésel":
-                        PrecioComb = 0.99;
+                        fuelPrice = 0.99;
                         break;
                 }
             }
@@ -164,16 +155,16 @@ public class MainActivity extends AppCompatActivity{
     }
 
     /**
-     *Creacion y calculos de la calculadora con trato de errores
+     *Create and controls the listener which calculate the fuel expenses, and write it in the TextView
      */
-    private void BotonCalculadora(){
+    private void createCalcFunctions(){
         Button calcula = (Button) findViewById(R.id.Go);
         calcula.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
-                EditText ET = (EditText) findViewById(R.id.km);
-                String aux = ET.getText().toString();
-                Double km, cons;
+                EditText calcReader = (EditText) findViewById(R.id.km);
+                String aux = calcReader.getText().toString();
+                Double km, consuming;
                 if (aux.equals("")) {
                     Toast.makeText(getBaseContext(), "Rellena todos los campos", Toast.LENGTH_LONG).show();
                     km = 0.0;
@@ -188,30 +179,30 @@ public class MainActivity extends AppCompatActivity{
                         km = 0.0;
                     }
                 }
-                ET = (EditText) findViewById(R.id.consumo);
-                aux = ET.getText().toString();
+                calcReader = (EditText) findViewById(R.id.consumo);
+                aux = calcReader.getText().toString();
                 if (aux.equals("")) {
                     Toast.makeText(getBaseContext(), "Rellena todos los campos",
                             Toast.LENGTH_LONG).show();
-                    cons = 0.0;
+                    consuming = 0.0;
                 }
                 else { //Comprobar si el double es correcto
                     try {
-                        cons = Double.parseDouble(aux);
+                        consuming = Double.parseDouble(aux);
                     }
                     catch(NumberFormatException e) {
                         Toast.makeText(getBaseContext(), "Has escrito mal el campo 'L/100'\n" +
                                 "Consejo: Has escrito coma en vez de punto?", Toast.LENGTH_LONG).show();
-                        cons = 0.0;
+                        consuming = 0.0;
                     }
                 }
-                cons = (cons/100)*km; //Calculo de combustible total
+                consuming = (consuming/100)*km; //Fuel cost function
                 TextView result = (TextView) findViewById(R.id.resultado);
-                result.setText(String.format("%.2f", (cons)) + "L");
+                result.setText(String.format("%.2f", (consuming)) + "L");
                 result = (TextView) findViewById(R.id.resultado2);
-                result.setText(String.format("%.2f", (cons*PrecioComb)) + "€");//Calculo gasto total
+                result.setText(String.format("%.2f", (consuming*fuelPrice)) + "€");//Total expenses on fuel
                 result = (TextView) findViewById(R.id.resultado3);
-                result.setText(String.format("%.3f", (PrecioComb)) + "€");
+                result.setText(String.format("%.3f", (fuelPrice)) + "€");
             } });
     }
 }
